@@ -4,30 +4,27 @@ const express = require('express');  // mesma coisa -> import express from "expr
 const app = express()
 //liberar o app para aceitar JSON 
 app.use(express.json())
+// importar a minha configuração do banco de dados - NÃO ESQUECER DE DAR O NPM INSTALL MONGOOSE
+const connect = require("./config/db.config");
+connect() // ela vai se conectar com o banco de dados
 
 const array = ['priscila', 'karen', 'jose', 'maria', 'joao']
-
 
 // herokuapp.com/fabricadepersonas
 // localhost:4000/nomes
 
-app.get("/nomes", (req, res) => {
-    // quando acessarem essa rota, devolve a array de nomes pro usuário
-    return res.status(200).json(array)
-})
 
-app.delete('/delete-nomes', (req, res) => {
-    // quando acessarem essa rota, devolve a array de nomes pro usuário
-    array.pop()
-    return res.status(200).json(array)
-})
 
-app.post('/criar-nome', (req, res) => {
-    // quando acessar essa rota, adicionar um novo nome que será passado pela REQUISIÇÃO
-    console.log(req.body)
-    array.push(req.body.nome)
-    return res.status(200).json(array)
-})
+
+//criar duas rotas 
+// uma rota de USUÁRIOS - todas as pessoas que moram na sua casa
+const usuariosRouter = require('./routes/usuarios.routes')
+app.use('/usuarios', usuariosRouter)
+
+// outra rota de TAREFAS - todas as tarefas que você precisa fazer
+const tarefasRouter = require('./routes/tarefas.routes')
+app.use('/tarefas', tarefasRouter)
+
 
 app.listen(4000, () => {
     console.log('Servidor rodando na porta 4000')
