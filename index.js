@@ -10,7 +10,7 @@ connect() // ela vai se conectar com o banco de dados
 
 const array = ['priscila', 'karen', 'jose', 'maria', 'joao']
 
-// herokuapp.com/fabricadepersonas
+// https://herokuapp.com/fabricadepersonas
 // localhost:4000/nomes
 
 

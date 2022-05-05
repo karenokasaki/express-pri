@@ -2,7 +2,6 @@
 const express = require('express');
 const router = express.Router()
 
-const tarefas = ['lavar louça', 'dar banho na sofia']
 
 router.get("/todas-tarefas", (req, res) => {
     return res.status(200).json(tarefas)
